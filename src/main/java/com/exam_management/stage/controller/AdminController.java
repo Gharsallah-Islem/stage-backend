@@ -145,7 +145,8 @@ public class AdminController {
     @GetMapping("/account-requests")
     public ResponseEntity<List<User>> getAccountRequests() {
         try {
-            List<User> accountRequests = userRepository.findByStatus("PENDING");
+            List<String> statuses = Arrays.asList("PENDING", "APPROVED");
+            List<User> accountRequests = userRepository.findByStatuses(statuses);
             return ResponseEntity.ok(accountRequests);
         } catch (Exception e) {
             logger.error("Error fetching account requests: ", e);

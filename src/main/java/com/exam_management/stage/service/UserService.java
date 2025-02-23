@@ -49,6 +49,7 @@ public class UserService implements UserDetailsService {
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
         response.put("role", user.getRole());
+        response.put("status", user.getStatus());
         return response;
     }
 
