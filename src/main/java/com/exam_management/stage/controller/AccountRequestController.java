@@ -44,6 +44,7 @@ public class AccountRequestController {
         return accountRequestService.revokeAccountRequest(id);
     }
 
+
     @DeleteMapping("/{id}")
     public void deleteAccountRequest(@PathVariable Long id) {
         accountRequestService.deleteAccountRequest(id);
