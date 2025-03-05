@@ -180,6 +180,7 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update user status.");
         }
     }
+
     @GetMapping("/exam-results")
     public ResponseEntity<List<ExamResult>> getAllExamResults() {
         try {
@@ -191,4 +192,17 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/exam-results/global-average")
+    public ResponseEntity<Double> getGlobalAverageScore() {
+        try {
+            Double average = examResultRepository.getAverageScore();
+            if (average == null) {
+                return ResponseEntity.ok(0.0);
+            }
+            return ResponseEntity.ok(average);
+        } catch (Exception e) {
+            logger.error("Error fetching global average score: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
